@@ -10,6 +10,12 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
+# 确保 screen 已安装
+if ! command -v screen &> /dev/null; then
+    echo "screen 未安装，正在安装..."
+    sudo apt-get install -y screen
+fi
+
 # 主菜单函数
 function main_menu() {
     while true; do
@@ -74,10 +80,11 @@ install_and_start_node() {
 
     # 启动节点
     echo "启动节点..."
-    sudo bash manager.sh up
+    screen -S network3 -p 0 -X stuff 'sudo bash manager.sh up\n'
 
     echo "脚本执行完毕。"
-    sleep 2
+    echo "按任意键返回主菜单..."
+    read -n 1
     main_menu
 }
 
@@ -85,6 +92,9 @@ install_and_start_node() {
 get_private_key() {
     echo "获取私钥..."
     sudo bash manager.sh key
+    echo "按任意键返回主菜单..."
+    read -n 1
+    main_menu
 }
 
 # 调用主菜单函数，开始执行主菜单逻辑

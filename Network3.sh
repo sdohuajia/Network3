@@ -16,9 +16,9 @@ function main_menu() {
         clear
         echo "脚本由大赌社区哈哈哈哈编写，推特 @ferdie_jhovie，免费开源，请勿相信收费"
         echo "================================================================"
-        echo "节点社区 Telegram 群组:https://t.me/niuwuriji"
-        echo "节点社区 Telegram 频道:https://t.me/niuwuriji"
-        echo "节点社区 Discord 社群:https://discord.gg/GbMV5EcNWF"
+        echo "节点社区 Telegram 群组: https://t.me/niuwuriji"
+        echo "节点社区 Telegram 频道: https://t.me/niuwuriji"
+        echo "节点社区 Discord 社群: https://discord.gg/GbMV5EcNWF"
         echo "退出脚本，请按键盘ctrl c退出即可"
         echo "请选择要执行的操作:"
         echo "1) 安装并启动节点"

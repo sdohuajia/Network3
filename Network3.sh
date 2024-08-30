@@ -91,6 +91,7 @@ install_and_start_node() {
 # 获取私钥函数
 get_private_key() {
     echo "获取私钥..."
+    cd ubuntu-node
     sudo bash manager.sh key
     echo "按任意键返回主菜单..."
     read -n 1

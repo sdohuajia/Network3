@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# 确保脚本在出现错误时会立即退出
-set -e
+# 脚本保存路径
+SCRIPT_PATH="$HOME/Network3.sh"
 
 # 检查是否以root用户运行脚本
 if [ "$(id -u)" != "0" ]; then
@@ -29,14 +29,16 @@ function main_menu() {
         echo "请选择要执行的操作:"
         echo "1) 安装并启动节点"
         echo "2) 获取私钥"
-        echo "3) 退出"
-        echo -n "选择一个选项 [1-3]: "
+        echo "3) 停止节点"
+        echo "4) 退出"
+        echo -n "选择一个选项 [1-4]: "
         read OPTION
 
         case $OPTION in
         1) install_and_start_node ;;
         2) get_private_key ;;
-        3) exit 0 ;;
+        3) stop_node ;;
+        4) exit 0 ;;
         *) echo "无效选项，请重新输入。" ;;
         esac
 
@@ -93,6 +95,17 @@ get_private_key() {
     echo "获取私钥..."
     cd ubuntu-node
     sudo bash manager.sh key
+    echo "按任意键返回主菜单..."
+    read -n 1
+    main_menu
+}
+
+# 停止节点函数
+stop_node() {
+    echo "停止节点..."
+    cd ubuntu-node
+    sudo bash manager.sh down
+    echo "节点已停止。"
     echo "按任意键返回主菜单..."
     read -n 1
     main_menu
